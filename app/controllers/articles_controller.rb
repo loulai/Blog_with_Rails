@@ -4,11 +4,18 @@ class ArticlesController < ApplicationController
 	end
 
 	def new
+		@article = Article.new
 	end
 
 	def create
-		@article = Article.create(params[:article].permit(:title, :text))
-		redirect_to @article
+		@article = Article.new(params[:article].permit(:title, :text))
+		
+		if @article.save
+			redirect_to @article
+		else
+			flash[:notice] = 'Dude what kind of title is that'
+			render 'new'
+		end
   end
 
   def show
