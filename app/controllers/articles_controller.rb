@@ -13,7 +13,6 @@ class ArticlesController < ApplicationController
 		if @article.save
 			redirect_to @article
 		else
-			flash[:notice] = 'Dude what kind of title is that'
 			render 'new'
 		end
   end
@@ -21,4 +20,18 @@ class ArticlesController < ApplicationController
   def show
   	@article = Article.find(params[:id])
   end
+
+  def edit
+  	@article = Article.find(params[:id])
+  end
+
+  def update
+  	@article = Article.find(params[:id].permit(:title, :text))
+
+  	if @article.update(article_params)
+  		redirect_to @article
+		else
+			render 'edit'
+		end
+	end
 end
