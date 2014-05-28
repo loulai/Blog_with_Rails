@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
   end
 
   def update
-  	@article = Article.find(params[:id].permit(:title, :text))
+  	@article = Article.find(params[:id])
 
   	if @article.update(article_params)
   		redirect_to @article
@@ -34,4 +34,10 @@ class ArticlesController < ApplicationController
 			render 'edit'
 		end
 	end
+
+private
+	def article_params
+		params.require(:article).permit(:title, :text)
+	end
+
 end
