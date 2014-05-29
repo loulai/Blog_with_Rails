@@ -8,6 +8,14 @@
 	<%= @article.text %>
 </p>
 
+<% if @article.comments.any? %>
+	<h2>Comments</h2>
+	<% @article.comments.each do |comment| %>
+		<p>Comment: <%= comment.body %></p>
+		<p>Written by: <%= comment.commenter %></p>
+	 <% end %>
+<% end %>
+
 <h2>Add a comment:</h2>
 <%= form_for([@article, @article.comments.build]) do |f|%>
 	<p>
