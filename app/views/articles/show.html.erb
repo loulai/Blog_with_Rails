@@ -1,18 +1,19 @@
-<p>
+<h1><p>
 	Title:
 	<%= @article.title %>
-</p>
+</p></h1>
 
-<p>
+<h3><p>
 	Text:
 	<%= @article.text %>
-</p>
+</p></h3>
 
 <% if @article.comments.any? %>
 	<h2>Comments</h2>
 	<% @article.comments.each do |comment| %>
 		<p>Comment: <%= comment.body %></p>
 		<p>Written by: <%= comment.commenter %></p>
+		<p><%= link_to 'Delete Comment', article_comment_path(comment.article, comment), method: :delete, data: {confirm: 'Are you sure?'} %></p>
 	 <% end %>
 <% end %>
 
