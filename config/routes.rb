@@ -18,8 +18,8 @@ Blog::Application.routes.draw do
   # Example resource route with options:
   #   resources :products do
   #     member do
-  #       get 'short'
-  #       post 'toggle'
+  #       get 'short
+ #       post 'toggle'
   #     end
   #
   #     collection do
