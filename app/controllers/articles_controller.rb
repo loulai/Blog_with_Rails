@@ -1,4 +1,7 @@
 class ArticlesController < ApplicationController
+
+	http_basic_authenticate
+
 	def index
 		@articles = Article.all
 	end
