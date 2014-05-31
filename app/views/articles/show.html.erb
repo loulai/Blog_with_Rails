@@ -1,38 +1,18 @@
 <h1><p>
-	Title:
-	<%= @article.title %>
+	Title: <%= @article.title %>
 </p></h1>
 
 <h3><p>
-	Text:
-	<%= @article.text %>
+	Text: <%= @article.text %>
 </p></h3>
 
 <% if @article.comments.any? %>
 	<h2>Comments</h2>
-	<% @article.comments.each do |comment| %>
-		<p>Comment: <%= comment.body %></p>
-		<p>Written by: <%= comment.commenter %></p>
-		<p><%= link_to 'Delete Comment', article_comment_path(comment.article, comment), method: :delete, data: {confirm: 'Are you sure?'} %></p>
-	 <% end %>
+	<%= render @article.comments %>
 <% end %>
 
 <h2>Add a comment:</h2>
-<%= form_for([@article, @article.comments.build]) do |f|%>
-	<p>
-		<%= f.label :commenter %><br>
-		<%= f.text_field :commenter %>
-	</p>
-
-	<p>
-		<%= f.label :body %><br>
-		<%= f.text_field :body %>
-	</p>
-
-	<p>
-		<%= f.submit %>
-	</p>
-<%end%>
+<%= render "comments/form" %>
 
 <%= link_to 'Back', articles_path %>
 <%= link_to 'Edit', edit_article_path(@article) %>
